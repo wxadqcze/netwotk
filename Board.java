@@ -1,4 +1,3 @@
-
 /* SimpleBoard.java */
 package Board;
 import player.*;
@@ -365,15 +364,16 @@ public class Board {
 		  for(int j = 0; j < i; j++){
 			  score += dist[i][j] * dist[i][j];
 		  }
-	  if(color == me)
-		  return score;
-	  else
-		  return -score;
+	  if(color == you)
+		  score = -score;
+	  if(score <= -BIG_NUMBER)
+	  	  score = -score *2;
+	  return score;
 	  
   }
   //calculate eval of white and black, and subtract from each other
   public int evaluate(){
-	  return evaluateHelp(Board.BLACK);
+	  return evaluateHelp(Board.BLACK)+ evaluateHElp(Board.BLACK);
   }
   //start-starting node, sum= current distrance from the starting node, and slope for the limitation on how nodes can connect
   //keep root and color to update distance matrix
